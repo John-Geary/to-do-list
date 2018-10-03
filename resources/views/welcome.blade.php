@@ -21,7 +21,7 @@
                  <div class="card mb-4">
     <div class="bg-secondary text-light d-flex justify-content-between align-items-center">
         <h5 class="card-header">General</h5>
-        <button type="button" class="mr-3 btn btn-sm btn-outline-light">Create Task</button>
+        <button type="button" class="mr-3 btn btn-sm btn-outline-light" data-toggle="modal" data-target="#createTask">Create Task</button>
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item d-flex justify-content-between align-items-center text-secondary">Wash car
@@ -38,7 +38,7 @@
             <div class="card mb-4">
     <div class="bg-secondary text-light d-flex justify-content-between align-items-center">
         <h5 class="card-header">Groceries</h5>
-        <button type="button" class="mr-3 btn btn-sm btn-outline-light">Create Task</button>
+        <button type="button" class="mr-3 btn btn-sm btn-outline-light" data-toggle="modal" data-target="#createTask">Create Task</button>
     </div>
     <ul class="list-group list-group-flush">
         <li class="list-group-item d-flex justify-content-between align-items-center text-secondary">Chicken
@@ -58,19 +58,41 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Create Group-->
 <div class="modal fade" id="createGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Add Group</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
+      <label for="inputGroup">Name:</label>
+      <input class="form-control" id="inputGroup">
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--MODAL Add Task-->
+<div class="modal fade" id="createTask" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add Task</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <label for="inputTask">Name:</label>
+            <input class="form-control" id="inputTask">
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
