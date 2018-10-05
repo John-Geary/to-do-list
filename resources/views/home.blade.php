@@ -17,17 +17,19 @@
                         <span>To Do List</span>
                         <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#createGroup">Create Group</button>
                     </h1>
+                    @foreach ($groups as $group)
                     <div class="card mb-4">
                         <div class="bg-secondary text-light d-flex justify-content-between align-items-center">
-                            <h5 class="card-header">General</h5>
+                            <h5 class="card-header">{{ $group->name }}</h5>
                             <button type="button" class="mr-3 btn btn-sm btn-outline-light" data-toggle="modal" data-target="#createTask">Create Task</button>
                         </div>
                         <ul class="list-group list-group-flush">
-                            @foreach ($chores as $chore)
-                            <li class="list-group-item d-flex justify-content-between align-items-center">{{ $chore->title }}</li>
+                            @foreach ($group->tasks as $task)
+                            <li class="list-group-item d-flex justify-content-between align-items-center">{{ $task->name }}</li>
                             @endforeach
                         </ul>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>
