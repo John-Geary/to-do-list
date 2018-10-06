@@ -11,8 +11,4 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/', 'ChoresController@index');
+Route::get('/', 'HomeController@index');
