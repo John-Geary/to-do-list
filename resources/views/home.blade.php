@@ -21,7 +21,7 @@
                     <div class="card mb-4">
                         <div class="bg-secondary text-light d-flex justify-content-between align-items-center">
                             <h5 class="card-header">{{ $group->name }}</h5>
-                            <button type="button" class="mr-3 btn btn-sm btn-outline-light" data-toggle="modal" data-target="#createTask">Create Task</button>
+                            <button type="button" class="mr-3 btn btn-sm btn-outline-light" data-toggle="modal" data-target="#createTask" data-group="{{ $group->id }}">Create Task</button>
                         </div>
                         <ul class="list-group list-group-flush">
                             @foreach ($group->tasks as $task)
@@ -39,18 +39,21 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Group</h5>
+                        <h5 class="modal-title">Group</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <form method="POST" action="/">
+                        {{ csrf_field() }}
                     <div class="modal-body">
                         <label for="inputGroup">Name:</label>
-                        <input class="form-control" id="inputGroup">
+                        <input type="text" class="form-control" id="group" name="name">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Add Group</button>
+                    </form>
                     </div>
                 </div>
             </div>
@@ -61,24 +64,37 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Add Task</h5>
+                        <h5 class="modal-title">Task</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+
+                    <form method="POST" action="/">
+                        {{ csrf_field() }}
                     <div class="modal-body">
                         <label for="inputTask">Name:</label>
-                        <input class="form-control" id="inputTask">
+                        <input type="text" class="form-control" id="name" name="name">
+                        <input type="hidden" id="group" name="group" value="">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Add Task</button>
+                    </form>
                     </div>
                 </div>
             </div>
         </div>
 
         <script src="{{ asset('/js/app.js') }}"></script>
+
+        <script>
+        $('#createTask').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var group = button.data('group');
+            $(this).find('input#group').val(group);
+        })
+    </script>
 
     </body>
 </html>
