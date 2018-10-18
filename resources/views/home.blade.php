@@ -50,7 +50,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form method="POST" action="/">
+                    <form method="POST" action="/groups">
                         {{ csrf_field() }}
                     <div class="modal-body">
                         <label for="inputGroup">Name:</label>
@@ -76,7 +76,7 @@
                         </button>
                     </div>
 
-                    <form method="POST" action="/">
+                    <form method="POST" action="/tasks">
                         {{ csrf_field() }}
                     <div class="modal-body">
                         <label for="inputTask">Name:</label>

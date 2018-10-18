@@ -34,4 +34,15 @@ class TaskController extends Controller
 
         return redirect('/');
     }
+
+    public function edit()
+    {
+
+    }
+
+
+    public function update()
+    {
+
+    }
 }
