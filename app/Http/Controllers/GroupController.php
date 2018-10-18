@@ -26,4 +26,28 @@ class GroupController extends Controller
 
         return redirect('/');
     }
+
+    public function edit()
+    {
+
+    }
+
+    public function update(Group $group)
+    {
+        $group->name = request('name');
+
+        $group->save();
+
+        return redirect('/');
+    }
+
+    public function destroy(Group $group)
+    {
+
+        $group->tasks()->delete();
+        $group->delete();
+
+        return redirect('/');
+    }
+
 }

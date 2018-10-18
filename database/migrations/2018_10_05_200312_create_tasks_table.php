@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->integer('group_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('group_id')->references('id')->on('groups')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('group_id')->references('id')->on('groups');
         });
     }
 

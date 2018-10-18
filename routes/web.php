@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\TaskController;
 
+use App\Http\Controllers\GroupController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

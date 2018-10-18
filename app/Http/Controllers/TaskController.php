@@ -40,9 +40,12 @@ class TaskController extends Controller
 
     }
 
-
-    public function update()
+    public function update(Task $task)
     {
+        $task->name = request('name');
 
+        $task->save();
+
+        return redirect('/');
     }
 }
