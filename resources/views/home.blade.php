@@ -25,7 +25,13 @@
                         </div>
                         <ul class="list-group list-group-flush">
                             @foreach ($group->tasks as $task)
-                            <li class="list-group-item d-flex justify-content-between align-items-center">{{ $task->name }}</li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">{{ $task->name }}
+                                <form method="POST" action="{{ route('tasks.destroy', ['id' => $task->id]) }}">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm btn-outline-primary" data-target="#deleteTask" data-group="{{ $group->id }}">Complete</button>
+                                </form>
+                            </li>
                             @endforeach
                         </ul>
                     </div>

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\TaskController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,5 +13,8 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
-Route::post('/', 'HomeController@store');
+Route::get('/', function () {
+    return redirect()->route('tasks.index');
+});
+
+Route::resource('tasks', 'TaskController');

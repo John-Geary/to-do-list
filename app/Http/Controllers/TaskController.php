@@ -6,7 +6,7 @@ use App\Group;
 
 use App\Task;
 
-class HomeController extends Controller
+class TaskController extends Controller
 {
     public function index()
     {
@@ -24,6 +24,13 @@ class HomeController extends Controller
         $task->group_id = request('group');
 
         $task->save();
+
+        return redirect('/');
+    }
+
+    public function destroy(Task $task)
+    {
+        $task->delete();
 
         return redirect('/');
     }
