@@ -1,14 +1,6 @@
-<!doctype html>
-<html lang="en">
-    <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+@extends('layout')
 
-    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
-
-    <title>To Do List</title>
-    </head>
-    <body>
+@section('content')
 
         <div class="container">
             <div class="row">
@@ -21,28 +13,40 @@
                     <div class="card mb-4">
                         <div class="bg-secondary text-light d-flex justify-content-between align-items-center">
                             <h5 class="card-header">{{ $group->name }}</h5>
-                            <div class="btn-group" role="group" aria-label="Basic example">
+                            <div class="dropdown">
+                                    <button class="btn btn-sm btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Edit
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <button type="button" class="dropdown-item" data-toggle="modal" data-target="#editGroup" data-name="{{ $group->name }}" data-group="{{ $group->id }}">Edit Group</button>
+                                    <button type="button" class="dropdown-item" data-toggle="modal" data-target="#createTask" data-group="{{ $group->id }}">Add Task</button>
                                     <form method="POST" action="{{ route('groups.destroy', ['id' => $group->id]) }}">
                                             @method('DELETE')
                                             @csrf
-                                            <button type="submit" class="btn btn-sm btn-outline-primary" data-target="#deleteGroup" data-group="{{ $group->id }}">Complete Group</button>
+                                            <button type="submit" class="dropdown-item" data-target="#deleteGroup" data-group="{{ $group->id }}">Complete Group</button>
                                         </form>
-                            <button type="button" class="mr-3 btn btn-sm btn-outline-light" data-toggle="modal" data-target="#editGroup" data-name="{{ $group->name }}" data-group="{{ $group->id }}">Edit Group</button>
-                                <button type="button" class="mr-3 btn btn-sm btn-outline-light" data-toggle="modal" data-target="#createTask" data-group="{{ $group->id }}">Create Task</button>
                             </div>
+                            </div>
+
                         </div>
+
                         <ul class="list-group list-group-flush">
                             @foreach ($group->tasks as $task)
                             <li class="list-group-item d-flex justify-content-between align-items-center">{{ $task->name }}
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="mr-3 btn btn-sm btn-outline-dark" data-toggle="modal" data-target="#editTask" data-name="{{ $task->name }}" data-group="{{ $task->id }}">Edit Task</button>
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Edit
+                                        </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <button type="button" class="dropdown-item" data-toggle="modal" data-target="#editTask" data-name="{{ $task->name }}" data-group="{{ $task->id }}">Edit Task</button>
+                                                    <form method="POST" action="{{ route('tasks.destroy', ['id' => $task->id]) }}">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="submit" class="dropdown-item" data-target="#deleteTask" data-group="{{ $group->id }}">Complete</button>
+                                                        </form>
+                                            </div>
+                                    </div>
 
-                                <form method="POST" action="{{ route('tasks.destroy', ['id' => $task->id]) }}">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-outline-primary" data-target="#deleteTask" data-group="{{ $group->id }}">Complete</button>
-                                </form>
-                            </div>
                             </li>
                             @endforeach
                         </ul>
@@ -190,6 +194,4 @@
             $(this).find('.modal-content form').attr('action', '/tasks/' + task);
         })
     </script>
-
-    </body>
-</html>
+@endsection
