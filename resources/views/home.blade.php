@@ -11,7 +11,7 @@
                     </h1>
                     @foreach ($groups as $group)
                     <div class="card mb-4">
-                        <div class="bg-secondary text-light d-flex justify-content-between align-items-center">
+                        <div class="bg-secondary text-light d-flex justify-content-between align-items-center" style="padding-right: 20px;">
                             <h5 class="card-header">{{ $group->name }}</h5>
                             <div class="dropdown">
                                     <button class="btn btn-sm btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
